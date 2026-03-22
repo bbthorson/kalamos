@@ -8,6 +8,7 @@ import { MobileNav } from "./mobile-nav";
 const navLinks = [
   { href: "/for-clinics", label: "For Clinics" },
   { href: "/for-therapists", label: "For Therapists" },
+  { href: "/compendium", label: "Compendium" },
   { href: "/about", label: "About" },
 ];
 

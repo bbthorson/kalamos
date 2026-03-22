@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Clock, Shield, DollarSign, CheckCircle } from "lucide-react";
+import { ArrowRight, Clock, Shield, DollarSign, CheckCircle, BookOpen } from "lucide-react";
+import { getCompendiumMetadata } from "@/lib/compendium";
 
 export const metadata: Metadata = {
   title: "For Clinics",
@@ -11,6 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default function ForClinicsPage() {
+  const meta = getCompendiumMetadata();
+
   return (
     <>
       {/* Hero */}
@@ -166,6 +169,45 @@ export default function ForClinicsPage() {
                   supported.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Evidence-Based Interventions */}
+      <section className="py-20 bg-warm-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <BookOpen className="h-10 w-10 text-primary-600 mx-auto mb-4" aria-hidden="true" />
+            <h2 className="text-3xl font-bold text-warm-900">
+              Evidence-Based Interventions
+            </h2>
+            <p className="mt-4 text-lg text-warm-600 leading-relaxed">
+              Our interventions are drawn from the CDC&apos;s HIV Compendium of
+              Evidence-Based Interventions — the gold standard for what works in
+              HIV behavioral health.
+            </p>
+            <div className="mt-6 flex justify-center gap-8 text-sm text-warm-500">
+              <div>
+                <span className="block text-2xl font-bold text-primary-700">
+                  {meta.treatmentCount}
+                </span>
+                Treatment Interventions
+              </div>
+              <div>
+                <span className="block text-2xl font-bold text-primary-700">
+                  {meta.preventionCount}
+                </span>
+                Prevention Publications
+              </div>
+            </div>
+            <div className="mt-8">
+              <Link href="/compendium">
+                <Button size="lg" variant="primary">
+                  Search the CDC Compendium
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

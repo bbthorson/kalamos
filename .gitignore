@@ -37,3 +37,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# font sources (licensed originals — only public/fonts/ woff/woff2 are needed)
+/GT Haptik/
+
+# debug logs
+firebase-debug.log

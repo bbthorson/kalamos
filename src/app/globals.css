@@ -1,5 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;500;600&display=swap');
+
+@font-face {
+  font-family: "GT Haptik";
+  src: url("/fonts/GT-Haptik-Medium.woff2") format("woff2"),
+       url("/fonts/GT-Haptik-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GT Haptik";
+  src: url("/fonts/GT-Haptik-Medium-Oblique.woff2") format("woff2"),
+       url("/fonts/GT-Haptik-Medium-Oblique.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
 
 /* === Kalamos Design Tokens === */
 @theme {
@@ -59,7 +77,7 @@
   --color-border: var(--color-warm-200);
 
   /* Font families */
-  --font-heading: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "GT Haptik", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
 
   /* Border radius */
