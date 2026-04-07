@@ -2,15 +2,30 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Heart, BarChart3, CheckCircle, DollarSign, Users } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle,
+  DollarSign,
+  Users,
+  BarChart3,
+  BookOpen,
+  Stethoscope,
+  Shield,
+} from "lucide-react";
+import { getCompendiumMetadata } from "@/lib/compendium";
+import { getPopulationThemes } from "@/lib/compendium/population-themes";
+import { PopulationSpotlightCard } from "@/components/for-therapists/population-spotlight-card";
 
 export const metadata: Metadata = {
   title: "For Therapists",
   description:
-    "Grow your therapy practice with Kalamos. Treat the populations you care about, see the impact of your work, and get paid through insurance.",
+    "Choose the patients you were meant to help. Join Kalamos to deliver evidence-based HIV behavioral health interventions to the populations you care about.",
 };
 
 export default function ForTherapistsPage() {
+  const meta = getCompendiumMetadata();
+  const themes = getPopulationThemes();
+
   return (
     <>
       {/* Hero */}
@@ -18,15 +33,19 @@ export default function ForTherapistsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
-              Grow Your Therapy Practice
+              Choose the Patients You Were Meant to Help
             </h1>
             <p className="mt-6 text-lg text-shadow-200 leading-relaxed">
-              Make a measurable impact on the patient populations you care about —
-              without the financial barriers that hold most therapists back.
+              Kalamos connects you with {meta.treatmentCount} evidence-based
+              interventions targeting the specific populations you care about.
+              Real patients, proven programs, meaningful work.
             </p>
             <div className="mt-8">
               <Link href="/contact">
-                <Button size="lg" className="bg-primary-500 hover:bg-primary-600 text-white">
+                <Button
+                  size="lg"
+                  className="bg-primary-500 hover:bg-primary-600 text-white"
+                >
                   Join Our Network
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Button>
@@ -36,52 +55,100 @@ export default function ForTherapistsPage() {
         </div>
       </section>
 
-      {/* The problem */}
+      {/* Population Spotlight Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-warm-900 mb-12 text-center">
-              It Doesn&apos;t Have to Be This Way
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-3xl font-bold text-warm-900">
+              Who You Could Work With
             </h2>
+            <p className="mt-4 text-lg text-warm-600">
+              The CDC Compendium identifies {meta.populations.length} unique
+              patient populations across HIV behavioral health. Here is how they
+              cluster into the work you might do.
+            </p>
+          </div>
 
-            <div className="space-y-10">
-              <div>
-                <h3 className="text-xl font-semibold text-warm-900 mb-3">
-                  Insurance Contracting Is Too Expensive
-                </h3>
-                <p className="text-warm-600 leading-relaxed">
-                  Most therapists find insurance contracts financially
-                  impractical, which means marketing ends up prioritizing
-                  higher-paying patients over those you could help the most. By
-                  partnering with primary care physicians and leveraging new
-                  billing codes, Kalamos changes the equation entirely.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold text-warm-900 mb-3">
-                  Artificially Limiting Access
-                </h3>
-                <p className="text-warm-600 leading-relaxed">
-                  Patients with non-normative sexual or gender orientations
-                  experience double the mental health challenges — yet financial
-                  barriers keep many from getting support. Kalamos ensures
-                  affordable, inclusive services so everyone gets the care they
-                  deserve, regardless of orientation.
-                </p>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {themes.map((theme) => (
+              <PopulationSpotlightCard key={theme.id} theme={theme} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* The Kalamos difference */}
+      {/* Evidence & Impact */}
       <section className="py-20 bg-warm-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold text-warm-900">
-              The Kalamos Difference
+              Evidence Behind the Work
             </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
+            <div className="text-center">
+              <div className="flex justify-center mb-2">
+                <BookOpen
+                  className="h-6 w-6 text-primary-600"
+                  aria-hidden="true"
+                />
+              </div>
+              <p className="text-3xl font-bold text-warm-900">
+                {meta.treatmentCount}
+              </p>
+              <p className="text-sm text-warm-600">Treatment Interventions</p>
+            </div>
+            <div className="text-center">
+              <div className="flex justify-center mb-2">
+                <Stethoscope
+                  className="h-6 w-6 text-primary-600"
+                  aria-hidden="true"
+                />
+              </div>
+              <p className="text-3xl font-bold text-warm-900">
+                {meta.preventionCount}
+              </p>
+              <p className="text-sm text-warm-600">Prevention Publications</p>
+            </div>
+            <div className="text-center">
+              <div className="flex justify-center mb-2">
+                <Shield
+                  className="h-6 w-6 text-primary-600"
+                  aria-hidden="true"
+                />
+              </div>
+              <p className="text-3xl font-bold text-warm-900">4</p>
+              <p className="text-sm text-warm-600">
+                EHE Pillars: Diagnose, Treat, Prevent, Respond
+              </p>
+            </div>
+          </div>
+
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-warm-600 leading-relaxed mb-6">
+              Every intervention in the Kalamos platform is drawn from the
+              CDC&apos;s Compendium of Evidence-Based Interventions and Best
+              Practices for HIV Prevention. These aren&apos;t theoretical
+              frameworks — they&apos;re programs with published outcomes, tested
+              with real patients in real clinical settings.
+            </p>
+            <Link
+              href="/compendium"
+              className="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center gap-1"
+            >
+              Explore the full compendium
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works (BHI comparison) */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-3xl font-bold text-warm-900">How It Works</h2>
             <p className="mt-4 text-lg text-warm-600">
               Integrated Behavioral Health (BHI) coverage without expensive
               credentialing costs.
@@ -91,18 +158,31 @@ export default function ForTherapistsPage() {
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
             <Card className="border-warm-300 bg-warm-100">
               <CardContent className="p-6 pt-6">
-                <h3 className="text-lg font-semibold text-warm-500 mb-4">Without BHI</h3>
+                <h3 className="text-lg font-semibold text-warm-500 mb-4">
+                  Without BHI
+                </h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3 text-warm-500">
-                    <DollarSign className="h-5 w-5 shrink-0 mt-0.5" aria-hidden="true" />
-                    <span className="text-sm">Prohibitively expensive contracting</span>
+                    <DollarSign
+                      className="h-5 w-5 shrink-0 mt-0.5"
+                      aria-hidden="true"
+                    />
+                    <span className="text-sm">
+                      Prohibitively expensive contracting
+                    </span>
                   </li>
                   <li className="flex items-start gap-3 text-warm-500">
-                    <Users className="h-5 w-5 shrink-0 mt-0.5" aria-hidden="true" />
+                    <Users
+                      className="h-5 w-5 shrink-0 mt-0.5"
+                      aria-hidden="true"
+                    />
                     <span className="text-sm">Isolated from primary care</span>
                   </li>
                   <li className="flex items-start gap-3 text-warm-500">
-                    <BarChart3 className="h-5 w-5 shrink-0 mt-0.5" aria-hidden="true" />
+                    <BarChart3
+                      className="h-5 w-5 shrink-0 mt-0.5"
+                      aria-hidden="true"
+                    />
                     <span className="text-sm">Billable time oriented</span>
                   </li>
                 </ul>
@@ -111,18 +191,29 @@ export default function ForTherapistsPage() {
 
             <Card className="border-primary-200 bg-primary-50">
               <CardContent className="p-6 pt-6">
-                <h3 className="text-lg font-semibold text-primary-700 mb-4">With Kalamos</h3>
+                <h3 className="text-lg font-semibold text-primary-700 mb-4">
+                  With Kalamos
+                </h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3 text-primary-700">
-                    <CheckCircle className="h-5 w-5 shrink-0 mt-0.5" aria-hidden="true" />
+                    <CheckCircle
+                      className="h-5 w-5 shrink-0 mt-0.5"
+                      aria-hidden="true"
+                    />
                     <span className="text-sm">Covered by insurance</span>
                   </li>
                   <li className="flex items-start gap-3 text-primary-700">
-                    <CheckCircle className="h-5 w-5 shrink-0 mt-0.5" aria-hidden="true" />
+                    <CheckCircle
+                      className="h-5 w-5 shrink-0 mt-0.5"
+                      aria-hidden="true"
+                    />
                     <span className="text-sm">Whole person care</span>
                   </li>
                   <li className="flex items-start gap-3 text-primary-700">
-                    <CheckCircle className="h-5 w-5 shrink-0 mt-0.5" aria-hidden="true" />
+                    <CheckCircle
+                      className="h-5 w-5 shrink-0 mt-0.5"
+                      aria-hidden="true"
+                    />
                     <span className="text-sm">Outcomes oriented</span>
                   </li>
                 </ul>
@@ -132,60 +223,26 @@ export default function ForTherapistsPage() {
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-warm-900 mb-12 text-center">
-              A Better Way Forward
-            </h2>
-
-            <div className="space-y-10">
-              <div>
-                <h3 className="text-xl font-semibold text-warm-900 mb-3 flex items-center gap-2">
-                  <Heart className="h-5 w-5 text-primary-600" aria-hidden="true" />
-                  Treat Populations You Care About
-                </h3>
-                <p className="text-warm-600 leading-relaxed">
-                  Focus on the patients you became a therapist to help — without
-                  worrying about whether they can pay. Kalamos prioritizes
-                  diversity and well-being so you can deliver care that reflects
-                  your values.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold text-warm-900 mb-3 flex items-center gap-2">
-                  <BarChart3 className="h-5 w-5 text-primary-600" aria-hidden="true" />
-                  See the Impact of Your Work
-                </h3>
-                <p className="text-warm-600 leading-relaxed">
-                  Every referral comes with specific physical and mental health
-                  goals, so you can see measurable outcomes from your work. And
-                  the patient-provider relationships you build often extend well
-                  beyond the initial intervention.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="py-16 bg-primary-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-warm-900">
-            Ready to make a measurable difference?
+            Ready to do the work that matters?
           </h2>
           <p className="mt-3 text-warm-600">
-            Join our growing network of therapists delivering evidence-based
-            care to the communities that need it most.
+            Join our network of therapists delivering evidence-based care to the
+            communities that need it most.
           </p>
-          <div className="mt-6">
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link href="/contact">
               <Button size="lg">
                 Contact Us
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Button>
+            </Link>
+            <Link href="/compendium">
+              <Button variant="outline" size="lg">
+                Explore the Compendium
               </Button>
             </Link>
           </div>
