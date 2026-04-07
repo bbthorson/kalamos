@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { InterventionCard } from "@/components/compendium/intervention-card";
-import { RotateCcw, Search, ChevronDown } from "lucide-react";
+import { RotateCcw, Search, ChevronDown, MapPin } from "lucide-react";
 import type { ScoredIntervention } from "@/types/questionnaire";
 
 export function QuestionnaireResults({
@@ -105,8 +105,14 @@ export function QuestionnaireResults({
           <RotateCcw className="h-4 w-4" aria-hidden="true" />
           Start Over
         </Button>
-        <Link href="/compendium">
+        <Link href="/find-care">
           <Button variant="primary">
+            <MapPin className="h-4 w-4" aria-hidden="true" />
+            Find a Provider Near You
+          </Button>
+        </Link>
+        <Link href="/compendium">
+          <Button variant="outline">
             <Search className="h-4 w-4" aria-hidden="true" />
             Explore Full Compendium
           </Button>
