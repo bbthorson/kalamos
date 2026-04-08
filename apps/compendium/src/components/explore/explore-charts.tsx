@@ -40,7 +40,13 @@ interface DurationDatum {
   count: number;
 }
 
+interface CategoryDatum {
+  category: string;
+  count: number;
+}
+
 interface ExploreChartsProps {
+  categoryData: CategoryDatum[];
   ehePillarData: EhePillarDatum[];
   efficacyData: EfficacyDatum[];
   populationThemes: PopulationDatum[];
@@ -87,7 +93,14 @@ function ChartCard({
   );
 }
 
+const CATEGORY_CHART_COLORS = [
+  "var(--color-primary-600)",
+  "var(--color-tertiary-500)",
+  "var(--color-accent-500)",
+];
+
 export function ExploreCharts({
+  categoryData,
   ehePillarData,
   efficacyData,
   populationThemes,
@@ -96,6 +109,37 @@ export function ExploreCharts({
 }: ExploreChartsProps) {
   return (
     <div className="grid gap-8">
+      {/* Clinical Category */}
+      <ChartCard
+        title="Clinical Categories"
+        description="All interventions and publications classified by clinical purpose: treatment for PLWH, prevention &amp; PrEP, or systems-level programs."
+      >
+        <div className="h-64 flex items-center justify-center">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={categoryData}
+                dataKey="count"
+                nameKey="category"
+                cx="50%"
+                cy="50%"
+                outerRadius={90}
+                label={({ category, count }) => `${category} (${count})`}
+                labelLine={{ stroke: CHART_LABEL_LINE }}
+              >
+                {categoryData.map((_, i) => (
+                  <Cell
+                    key={i}
+                    fill={CATEGORY_CHART_COLORS[i % CATEGORY_CHART_COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip contentStyle={tooltipStyle} />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </ChartCard>
+
       {/* EHE Pillar Distribution */}
       <ChartCard
         title="Ending the HIV Epidemic Pillars"

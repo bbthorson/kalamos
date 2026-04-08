@@ -3,16 +3,17 @@ import {
   getTreatmentInterventions,
   getPreventionPublications,
   getCompendiumMetadata,
+  getCategoryCounts,
+  CATEGORY_LABELS,
 } from "@kalamos/compendium-data";
 import { CompendiumSearch } from "@/components/search/compendium-search";
-import { BookOpen, FileText } from "lucide-react";
+import { BookOpen, FileText, Activity } from "lucide-react";
 
 export default async function CatalogPage() {
-  const [interventions, publications, metadata] = await Promise.all([
-    getTreatmentInterventions(),
-    getPreventionPublications(),
-    getCompendiumMetadata(),
-  ]);
+  const interventions = getTreatmentInterventions();
+  const publications = getPreventionPublications();
+  const metadata = getCompendiumMetadata();
+  const categoryCounts = getCategoryCounts();
 
   return (
     <div className="min-h-screen bg-warm-50">
@@ -27,16 +28,24 @@ export default async function CatalogPage() {
             CDC&rsquo;s Compendium of Evidence-Based Interventions and Best
             Practices for HIV Prevention.
           </p>
-          <div className="mt-6 flex gap-6">
+          <div className="mt-6 flex flex-wrap gap-6">
             <div className="flex items-center gap-2 text-sm text-warm-700">
               <BookOpen className="h-4 w-4 text-primary-600" />
               <span className="font-medium">{metadata.treatmentCount}</span>{" "}
-              Treatment Interventions
+              Interventions
             </div>
             <div className="flex items-center gap-2 text-sm text-warm-700">
               <FileText className="h-4 w-4 text-primary-600" />
               <span className="font-medium">{metadata.preventionCount}</span>{" "}
-              Prevention Publications
+              Publications
+            </div>
+            <div className="flex items-center gap-2 text-sm text-warm-600 border-l border-warm-200 pl-6">
+              <Activity className="h-4 w-4 text-primary-500" />
+              <span className="font-medium">{categoryCounts.treatment}</span> {CATEGORY_LABELS.treatment}
+              <span className="text-warm-300">|</span>
+              <span className="font-medium">{categoryCounts.prevention}</span> {CATEGORY_LABELS.prevention}
+              <span className="text-warm-300">|</span>
+              <span className="font-medium">{categoryCounts.systems}</span> {CATEGORY_LABELS.systems}
             </div>
           </div>
         </div>

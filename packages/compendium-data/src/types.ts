@@ -51,6 +51,22 @@ export interface CompendiumMetadata {
   preventionCount: number;
 }
 
+export interface UnifiedFilters {
+  query?: string;
+  populations?: string[];
+  ehePillars?: EHEPillar[];
+  category?: ClinicalCategory[];
+  /** Treatment-specific */
+  effects?: string[];
+  strategies?: string[];
+  efficacy?: string[];
+  /** Prevention-specific */
+  outcomes?: string[];
+  publicationTypes?: string[];
+}
+
+export type ClinicalCategory = "treatment" | "prevention" | "systems";
+
 export interface TreatmentFilters {
   query?: string;
   populations?: string[];

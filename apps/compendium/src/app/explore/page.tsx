@@ -3,6 +3,8 @@ import {
   getTreatmentInterventions,
   getPreventionPublications,
   getPopulationThemes,
+  getCategoryCounts,
+  CATEGORY_LABELS,
   EHE_PILLARS,
 } from "@kalamos/compendium-data";
 import { ExploreCharts } from "@/components/explore/explore-charts";
@@ -66,9 +68,18 @@ function computeDurationData() {
     .sort((a, b) => b.count - a.count);
 }
 
+function computeCategoryData() {
+  const counts = getCategoryCounts();
+  return Object.entries(counts).map(([key, count]) => ({
+    category: CATEGORY_LABELS[key as keyof typeof CATEGORY_LABELS],
+    count,
+  }));
+}
+
 export default function ExplorePage() {
   const ehePillarData = computeEhePillarData();
   const efficacyData = computeEfficacyData();
+  const categoryData = computeCategoryData();
   const populationThemes = getPopulationThemes();
   const studyLocationData = computeStudyLocationData();
   const durationData = computeDurationData();
@@ -89,6 +100,7 @@ export default function ExplorePage() {
       </div>
 
       <ExploreCharts
+        categoryData={categoryData}
         ehePillarData={ehePillarData}
         efficacyData={efficacyData}
         populationThemes={populationThemes.map((t) => ({

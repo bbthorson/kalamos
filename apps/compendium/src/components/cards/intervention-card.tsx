@@ -1,8 +1,15 @@
 import Link from "next/link";
-import type { TreatmentIntervention } from "@kalamos/compendium-data";
+import type { TreatmentIntervention, ClinicalCategory } from "@kalamos/compendium-data";
+import { CATEGORY_LABELS } from "@kalamos/compendium-data";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+
+const CATEGORY_COLORS: Record<ClinicalCategory, string> = {
+  treatment: "bg-primary-100 text-primary-800",
+  prevention: "bg-tertiary-400/30 text-warm-800",
+  systems: "bg-accent-400/20 text-accent-600",
+};
 
 const efficacyColors: Record<string, string> = {
   "Best Evidence": "bg-primary-100 text-primary-800",
@@ -19,9 +26,10 @@ function getEfficacyStyle(rating: string) {
 
 interface InterventionCardProps {
   intervention: TreatmentIntervention;
+  category?: ClinicalCategory;
 }
 
-export function InterventionCard({ intervention }: InterventionCardProps) {
+export function InterventionCard({ intervention, category }: InterventionCardProps) {
   const {
     id,
     name,
@@ -58,6 +66,13 @@ export function InterventionCard({ intervention }: InterventionCardProps) {
         </p>
       </CardHeader>
       <CardContent className="mt-auto space-y-3">
+        {/* Category */}
+        {category && (
+          <Badge className={cn("text-xs", CATEGORY_COLORS[category])}>
+            {CATEGORY_LABELS[category]}
+          </Badge>
+        )}
+
         {/* EHE Pillars */}
         {ehePillars.length > 0 && (
           <div className="flex flex-wrap gap-1">

@@ -4,7 +4,10 @@ import type {
   CompendiumMetadata,
   TreatmentFilters,
   PreventionFilters,
+  UnifiedFilters,
+  ClinicalCategory,
 } from "./types";
+import { classifyIntervention, classifyPublication } from "./classify";
 import treatmentData from "./data/compendium-treatment.json";
 import preventionData from "./data/compendium-prevention.json";
 import metadataData from "./data/compendium-metadata.json";
@@ -149,4 +152,54 @@ export function searchCompendium(query: string) {
   const treatmentResults = getTreatmentInterventions({ query });
   const preventionResults = getPreventionPublications({ query });
   return { treatments: treatmentResults, publications: preventionResults };
+}
+
+// --- Unified taxonomy helpers ---
+
+export type ClassifiedIntervention = TreatmentIntervention & {
+  category: ClinicalCategory;
+  source: "treatment";
+};
+
+export type ClassifiedPublication = PreventionPublication & {
+  category: ClinicalCategory;
+  source: "prevention";
+};
+
+export type ClassifiedItem = ClassifiedIntervention | ClassifiedPublication;
+
+/** Get all treatment interventions with their clinical category. */
+export function getClassifiedInterventions(): ClassifiedIntervention[] {
+  return treatments.map((item) => ({
+    ...item,
+    category: classifyIntervention(item),
+    source: "treatment" as const,
+  }));
+}
+
+/** Get all prevention publications with their clinical category. */
+export function getClassifiedPublications(): ClassifiedPublication[] {
+  return publications.map((item) => ({
+    ...item,
+    category: classifyPublication(item),
+    source: "prevention" as const,
+  }));
+}
+
+/** Get all items (interventions + publications) classified by clinical category. */
+export function getAllClassified(): ClassifiedItem[] {
+  return [
+    ...getClassifiedInterventions(),
+    ...getClassifiedPublications(),
+  ];
+}
+
+/** Get counts per clinical category across all items. */
+export function getCategoryCounts(): Record<ClinicalCategory, number> {
+  const all = getAllClassified();
+  return {
+    treatment: all.filter((i) => i.category === "treatment").length,
+    prevention: all.filter((i) => i.category === "prevention").length,
+    systems: all.filter((i) => i.category === "systems").length,
+  };
 }

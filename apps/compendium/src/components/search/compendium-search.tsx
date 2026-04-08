@@ -6,6 +6,13 @@ import type {
   TreatmentIntervention,
   PreventionPublication,
   CompendiumMetadata,
+  ClinicalCategory,
+} from "@kalamos/compendium-data";
+import {
+  classifyIntervention,
+  classifyPublication,
+  CATEGORY_LABELS,
+  CLINICAL_CATEGORIES,
 } from "@kalamos/compendium-data";
 import { Search, X, SlidersHorizontal, ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -74,6 +81,7 @@ export function CompendiumSearch({
 
   // Filter state keyed by dimension
   const [filters, setFilters] = useState<Record<string, string[]>>(() => ({
+    category: parseMulti(searchParams, "category"),
     ehePillars: parseMulti(searchParams, "ehePillars"),
     efficacy: parseMulti(searchParams, "efficacy"),
     studyLocation: parseMulti(searchParams, "studyLocation"),
@@ -129,6 +137,16 @@ export function CompendiumSearch({
     pushUrl(filters, tab, query, s);
   }
 
+  // --- Pre-compute categories ---
+  const interventionCategories = useMemo(
+    () => new Map(interventions.map((i) => [i.id, classifyIntervention(i)])),
+    [interventions]
+  );
+  const publicationCategories = useMemo(
+    () => new Map(publications.map((p) => [p.id, classifyPublication(p)])),
+    [publications]
+  );
+
   // --- Derive unique option values ---
   const efficacyOptions = useMemo(
     () => [...new Set(interventions.map((i) => i.efficacyRating))].sort(),
@@ -165,6 +183,15 @@ export function CompendiumSearch({
   // --- Filter sections per tab ---
   const filterSections = useMemo(() => {
     const common = [
+      {
+        key: "category",
+        title: "Clinical Category",
+        options: CLINICAL_CATEGORIES.map((c) => c as string),
+        labels: Object.fromEntries(
+          CLINICAL_CATEGORIES.map((c) => [c, CATEGORY_LABELS[c]])
+        ),
+        selected: filters.category,
+      },
       {
         key: "ehePillars",
         title: "EHE Pillars",
@@ -242,6 +269,11 @@ export function CompendiumSearch({
           i.description.toLowerCase().includes(q)
       );
     }
+    if (filters.category.length > 0) {
+      results = results.filter((i) =>
+        filters.category.includes(interventionCategories.get(i.id)!)
+      );
+    }
     if (filters.ehePillars.length > 0) {
       results = results.filter((i) =>
         filters.ehePillars.some((p) => i.ehePillars.includes(p as any))
@@ -283,7 +315,7 @@ export function CompendiumSearch({
       }
       return a.name.localeCompare(b.name);
     });
-  }, [interventions, query, filters, sort]);
+  }, [interventions, query, filters, sort, interventionCategories]);
 
   const filteredPublications = useMemo(() => {
     let results = publications;
@@ -294,6 +326,11 @@ export function CompendiumSearch({
         (p) =>
           p.title.toLowerCase().includes(q) ||
           p.authors.toLowerCase().includes(q)
+      );
+    }
+    if (filters.category.length > 0) {
+      results = results.filter((p) =>
+        filters.category.includes(publicationCategories.get(p.id)!)
       );
     }
     if (filters.ehePillars.length > 0) {
@@ -318,7 +355,7 @@ export function CompendiumSearch({
       }
       return a.title.localeCompare(b.title);
     });
-  }, [publications, query, filters, sort]);
+  }, [publications, query, filters, sort, publicationCategories]);
 
   const resultCount =
     tab === "treatment"
@@ -465,6 +502,7 @@ export function CompendiumSearch({
                 <InterventionCard
                   key={intervention.id}
                   intervention={intervention}
+                  category={interventionCategories.get(intervention.id)}
                 />
               ))}
             </div>

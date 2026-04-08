@@ -3,7 +3,10 @@ import Link from "next/link";
 import {
   getTreatmentInterventions,
   getInterventionById,
+  classifyIntervention,
+  CATEGORY_LABELS,
 } from "@kalamos/compendium-data";
+import type { ClinicalCategory } from "@kalamos/compendium-data";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
@@ -35,6 +38,12 @@ export async function generateMetadata({
 }
 
 import { PILLAR_COLORS } from "@/lib/pillar-colors";
+
+const CATEGORY_BADGE_COLORS: Record<ClinicalCategory, string> = {
+  treatment: "bg-primary-100 text-primary-800",
+  prevention: "bg-tertiary-400/30 text-warm-800",
+  systems: "bg-accent-400/20 text-accent-600",
+};
 
 function getRelatedInterventions(
   currentId: string,
@@ -83,6 +92,8 @@ export default async function InterventionDetailPage({
     );
   }
 
+  const category = classifyIntervention(intervention);
+
   const related = getRelatedInterventions(
     intervention.id,
     intervention.ehePillars,
@@ -116,6 +127,11 @@ export default async function InterventionDetailPage({
                 >
                   {intervention.efficacyRating}
                 </Badge>
+                <span
+                  className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-medium shrink-0 ${CATEGORY_BADGE_COLORS[category]}`}
+                >
+                  {CATEGORY_LABELS[category]}
+                </span>
               </div>
               <p className="text-warm-600 text-base leading-relaxed max-w-3xl">
                 {intervention.description}

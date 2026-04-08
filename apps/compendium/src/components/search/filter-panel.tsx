@@ -9,6 +9,7 @@ interface FilterSectionProps {
   options: string[];
   selected: string[];
   onChange: (values: string[]) => void;
+  labels?: Record<string, string>;
   initialVisible?: number;
 }
 
@@ -17,6 +18,7 @@ function FilterSection({
   options,
   selected,
   onChange,
+  labels,
   initialVisible = 5,
 }: FilterSectionProps) {
   const [expanded, setExpanded] = useState(false);
@@ -81,7 +83,7 @@ function FilterSection({
               className="mt-0.5 h-3.5 w-3.5 rounded border-warm-300 text-primary-600 focus:ring-primary-500 shrink-0"
             />
             <span className="text-xs text-warm-700 leading-snug group-hover:text-warm-900">
-              {option}
+              {labels?.[option] ?? option}
             </span>
           </label>
         ))}
@@ -113,6 +115,7 @@ interface FilterPanelProps {
     title: string;
     options: string[];
     selected: string[];
+    labels?: Record<string, string>;
   }[];
   onChange: (key: string, values: string[]) => void;
   onClearAll: () => void;
@@ -154,6 +157,7 @@ export function FilterPanel({
               title={section.title}
               options={section.options}
               selected={section.selected}
+              labels={section.labels}
               onChange={(values) => onChange(section.key, values)}
             />
           ))}
