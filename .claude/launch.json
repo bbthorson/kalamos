@@ -4,8 +4,14 @@
     {
       "name": "dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": ["run", "dev:web"],
       "port": 3000
+    },
+    {
+      "name": "compendium",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:compendium"],
+      "port": 3001
     }
   ]
 }

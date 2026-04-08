@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+@import "@kalamos/tokens";
+
+@font-face {
+  font-family: "GT Haptik";
+  src: url("/fonts/GT-Haptik-Medium.woff2") format("woff2"),
+       url("/fonts/GT-Haptik-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GT Haptik";
+  src: url("/fonts/GT-Haptik-Medium-Oblique.woff2") format("woff2"),
+       url("/fonts/GT-Haptik-Medium-Oblique.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* === Base Styles === */
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+@utility focus-ring {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}

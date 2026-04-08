@@ -1,0 +1,73 @@
+/* === Kalamos Design Tokens === */
+/* Palette: Happy Hues #1 — deep purple, coral accent, golden tertiary */
+@theme {
+  /* Primary: Deep purple */
+  --color-primary-50: #f4effc;
+  --color-primary-100: #e8dffa;
+  --color-primary-200: #d1bff5;
+  --color-primary-300: #b49ae8;
+  --color-primary-400: #9474d4;
+  --color-primary-500: #67568c;
+  --color-primary-600: #4c346b;
+  --color-primary-700: #3d2a57;
+  --color-primary-800: #301e4e;
+  --color-primary-900: #1f1235;
+  --color-primary-950: #120a1f;
+
+  /* Warm neutral palette — purple-tinted neutrals */
+  --color-warm-50: #faf9fc;
+  --color-warm-100: #f4f0f8;
+  --color-warm-200: #e2daeb;
+  --color-warm-300: #c9bae2;
+  --color-warm-400: #a28cb8;
+  --color-warm-500: #7a6890;
+  --color-warm-600: #5c4e6b;
+  --color-warm-700: #463366;
+  --color-warm-800: #2e2042;
+  --color-warm-900: #1b1425;
+  --color-warm-950: #0e0a14;
+
+  /* Shadow palette — muted purples for overlays and depth */
+  --color-shadow-50: #f6f3f9;
+  --color-shadow-100: #ede6f3;
+  --color-shadow-200: #d9cce6;
+  --color-shadow-300: #bfaad3;
+  --color-shadow-400: #9f82b8;
+  --color-shadow-500: #7f5f9c;
+  --color-shadow-600: #664a80;
+  --color-shadow-700: #513b66;
+  --color-shadow-800: #3e2d4e;
+  --color-shadow-900: #2c2038;
+
+  /* Accent: Coral — warmth, action, attention */
+  --color-accent-400: #ff8a88;
+  --color-accent-500: #ff6e6c;
+  --color-accent-600: #e85553;
+
+  /* Crisis/urgent: Coral-red */
+  --color-crisis-500: #ff6e6c;
+  --color-crisis-600: #e85553;
+  --color-crisis-700: #c43e3c;
+
+  /* Tertiary: Warm gold */
+  --color-tertiary-400: #fce68a;
+  --color-tertiary-500: #fbdd74;
+  --color-tertiary-600: #e5c45a;
+
+  /* Semantic */
+  --color-surface: #ffffff;
+  --color-surface-secondary: var(--color-warm-50);
+  --color-text-primary: var(--color-primary-900);
+  --color-text-secondary: var(--color-warm-600);
+  --color-border: var(--color-warm-200);
+
+  /* Font families */
+  --font-heading: "GT Haptik", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+  /* Border radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
