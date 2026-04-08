@@ -191,7 +191,7 @@ function InterventionDetail({
               like this to HIV care clinics.
             </p>
             <div className="flex gap-3">
-              <Link href="/for-clinics">
+              <Link href="/services">
                 <Button variant="primary">Learn About Our Services</Button>
               </Link>
               <Link href="/contact">
@@ -349,7 +349,7 @@ function PublicationDetail({
 
           <div className="border-t border-warm-200 pt-8">
             <div className="flex gap-3">
-              <Link href="/for-clinics">
+              <Link href="/services">
                 <Button variant="primary">Learn About Our Services</Button>
               </Link>
               <Link href="/contact">

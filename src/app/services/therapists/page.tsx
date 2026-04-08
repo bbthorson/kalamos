@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   ArrowRight,
-  CheckCircle,
-  DollarSign,
-  Users,
-  BarChart3,
   BookOpen,
   Stethoscope,
   Shield,
 } from "lucide-react";
 import { getCompendiumMetadata } from "@/lib/compendium";
 import { getPopulationThemes } from "@/lib/compendium/population-themes";
-import { PopulationSpotlightCard } from "@/components/for-therapists/population-spotlight-card";
+import { PopulationSpotlightCard } from "@/components/services/population-spotlight-card";
+import { BhiComparison } from "@/components/shared/bhi-comparison";
 
 export const metadata: Metadata = {
   title: "For Therapists",
@@ -22,7 +18,7 @@ export const metadata: Metadata = {
     "Choose the patients you were meant to help. Join Kalamos to deliver evidence-based HIV behavioral health interventions to the populations you care about.",
 };
 
-export default function ForTherapistsPage() {
+export default function TherapistsPage() {
   const meta = getCompendiumMetadata();
   const themes = getPopulationThemes();
 
@@ -36,9 +32,10 @@ export default function ForTherapistsPage() {
               Choose the Patients You Were Meant to Help
             </h1>
             <p className="mt-6 text-lg text-shadow-200 leading-relaxed">
-              Kalamos connects you with {meta.treatmentCount} evidence-based
-              interventions targeting the specific populations you care about.
-              Real patients, proven programs, meaningful work.
+              Kalamos therapists are the engine of our clinical services. As a
+              contracted provider, you deliver {meta.treatmentCount}{" "}
+              evidence-based interventions to the specific populations you care
+              about. Real patients, proven programs, meaningful work.
             </p>
             <div className="mt-8">
               <Link href="/contact">
@@ -144,84 +141,21 @@ export default function ForTherapistsPage() {
         </div>
       </section>
 
-      {/* How It Works (BHI comparison) */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold text-warm-900">How It Works</h2>
-            <p className="mt-4 text-lg text-warm-600">
-              Integrated Behavioral Health (BHI) coverage without expensive
-              credentialing costs.
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="border-warm-300 bg-warm-100">
-              <CardContent className="p-6 pt-6">
-                <h3 className="text-lg font-semibold text-warm-500 mb-4">
-                  Without BHI
-                </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3 text-warm-500">
-                    <DollarSign
-                      className="h-5 w-5 shrink-0 mt-0.5"
-                      aria-hidden="true"
-                    />
-                    <span className="text-sm">
-                      Prohibitively expensive contracting
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3 text-warm-500">
-                    <Users
-                      className="h-5 w-5 shrink-0 mt-0.5"
-                      aria-hidden="true"
-                    />
-                    <span className="text-sm">Isolated from primary care</span>
-                  </li>
-                  <li className="flex items-start gap-3 text-warm-500">
-                    <BarChart3
-                      className="h-5 w-5 shrink-0 mt-0.5"
-                      aria-hidden="true"
-                    />
-                    <span className="text-sm">Billable time oriented</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-primary-200 bg-primary-50">
-              <CardContent className="p-6 pt-6">
-                <h3 className="text-lg font-semibold text-primary-700 mb-4">
-                  With Kalamos
-                </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3 text-primary-700">
-                    <CheckCircle
-                      className="h-5 w-5 shrink-0 mt-0.5"
-                      aria-hidden="true"
-                    />
-                    <span className="text-sm">Covered by insurance</span>
-                  </li>
-                  <li className="flex items-start gap-3 text-primary-700">
-                    <CheckCircle
-                      className="h-5 w-5 shrink-0 mt-0.5"
-                      aria-hidden="true"
-                    />
-                    <span className="text-sm">Whole person care</span>
-                  </li>
-                  <li className="flex items-start gap-3 text-primary-700">
-                    <CheckCircle
-                      className="h-5 w-5 shrink-0 mt-0.5"
-                      aria-hidden="true"
-                    />
-                    <span className="text-sm">Outcomes oriented</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      {/* BHI Comparison */}
+      <BhiComparison
+        title="How It Works"
+        subtitle="Integrated Behavioral Health (BHI) coverage without expensive credentialing costs."
+        withoutItems={[
+          { iconName: "DollarSign", text: "Prohibitively expensive contracting" },
+          { iconName: "Users", text: "Isolated from primary care" },
+          { iconName: "BarChart3", text: "Billable time oriented" },
+        ]}
+        withItems={[
+          "Covered by insurance",
+          "Whole person care",
+          "Outcomes oriented",
+        ]}
+      />
 
       {/* CTA */}
       <section className="py-16 bg-primary-50">

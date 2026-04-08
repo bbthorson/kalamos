@@ -6,10 +6,9 @@ import { cn } from "@/lib/utils";
 import { MobileNav } from "./mobile-nav";
 
 const navLinks = [
-  { href: "/for-patients", label: "For Patients" },
+  { href: "/platform", label: "Platform" },
+  { href: "/services", label: "Services" },
   { href: "/find-care", label: "Find Care" },
-  { href: "/for-clinics", label: "For Clinics" },
-  { href: "/for-therapists", label: "For Therapists" },
   { href: "/compendium", label: "Compendium" },
   { href: "/about", label: "About" },
 ];

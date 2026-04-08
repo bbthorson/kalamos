@@ -10,8 +10,8 @@ export function Footer() {
               Kalamos
             </Link>
             <p className="mt-2 text-sm text-warm-500">
-              Integrated behavioral health for HIV care. Making sexual wellness
-              approachable and accessible for everyone.
+              Better outcomes for patients living with HIV through integrated
+              behavioral health technology and services.
             </p>
           </div>
 
@@ -19,13 +19,13 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-warm-900 mb-3">Learn More</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/for-clinics" className="text-warm-500 hover:text-warm-700">
-                  For Clinics
+                <Link href="/platform" className="text-warm-500 hover:text-warm-700">
+                  Platform
                 </Link>
               </li>
               <li>
-                <Link href="/for-therapists" className="text-warm-500 hover:text-warm-700">
-                  For Therapists
+                <Link href="/services" className="text-warm-500 hover:text-warm-700">
+                  Services
                 </Link>
               </li>
               <li>
