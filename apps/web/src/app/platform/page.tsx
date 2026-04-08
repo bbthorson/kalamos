@@ -232,7 +232,7 @@ export default function PlatformPage() {
                       </span>
                     </div>
                   </div>
-                  <div className="ml-auto flex items-center gap-1 text-amber-500">
+                  <div className="ml-auto flex items-center gap-1 text-tertiary-500">
                     <Star
                       className="h-3.5 w-3.5 fill-current"
                       aria-hidden="true"

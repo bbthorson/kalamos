@@ -48,23 +48,24 @@ interface ExploreChartsProps {
   durationData: DurationDatum[];
 }
 
-const COLORS = [
+const PIE_COLORS = [
   "var(--color-primary-600)",
   "var(--color-primary-400)",
+  "var(--color-accent-500)",
+  "var(--color-tertiary-500)",
+  "var(--color-shadow-500)",
   "var(--color-warm-500)",
-  "var(--color-warm-300)",
-  "var(--color-primary-800)",
-  "var(--color-warm-700)",
 ];
 
-const PIE_COLORS = [
-  "#4f7a5c",
-  "#7ba68a",
-  "#a8c5b2",
-  "#d4a574",
-  "#b8956a",
-  "#8b7355",
-];
+const CHART_GRID = "var(--color-warm-200)";
+const CHART_TICK = "var(--color-warm-600)";
+const CHART_LABEL_LINE = "var(--color-warm-400)";
+
+const tooltipStyle = {
+  borderRadius: "var(--radius-md)",
+  border: "1px solid var(--color-border)",
+  fontSize: "0.8125rem",
+};
 
 function ChartCard({
   title,
@@ -77,7 +78,7 @@ function ChartCard({
 }) {
   return (
     <div className="bg-white rounded-xl border border-warm-200 p-6">
-      <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)]">
+      <h2 className="text-lg font-semibold text-warm-900 font-heading">
         {title}
       </h2>
       <p className="text-sm text-warm-500 mt-1 mb-6">{description}</p>
@@ -103,30 +104,24 @@ export function ExploreCharts({
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={ehePillarData} barGap={4}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e8e0d8" />
+              <CartesianGrid strokeDasharray="3 3" stroke={CHART_GRID} />
               <XAxis
                 dataKey="pillar"
-                tick={{ fill: "#6b5e54", fontSize: 13 }}
+                tick={{ fill: CHART_TICK, fontSize: 13 }}
               />
-              <YAxis tick={{ fill: "#6b5e54", fontSize: 12 }} />
-              <Tooltip
-                contentStyle={{
-                  borderRadius: "8px",
-                  border: "1px solid #e8e0d8",
-                  fontSize: "13px",
-                }}
-              />
-              <Legend wrapperStyle={{ fontSize: "13px" }} />
+              <YAxis tick={{ fill: CHART_TICK, fontSize: 12 }} />
+              <Tooltip contentStyle={tooltipStyle} />
+              <Legend wrapperStyle={{ fontSize: "0.8125rem" }} />
               <Bar
                 dataKey="treatments"
                 name="Treatment Interventions"
-                fill="#4f7a5c"
+                fill="var(--color-primary-700)"
                 radius={[4, 4, 0, 0]}
               />
               <Bar
                 dataKey="publications"
                 name="Prevention Publications"
-                fill="#a8c5b2"
+                fill="var(--color-primary-300)"
                 radius={[4, 4, 0, 0]}
               />
             </BarChart>
@@ -147,25 +142,19 @@ export function ExploreCharts({
                 layout="vertical"
                 margin={{ left: 20 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="#e8e0d8" />
-                <XAxis type="number" tick={{ fill: "#6b5e54", fontSize: 12 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke={CHART_GRID} />
+                <XAxis type="number" tick={{ fill: CHART_TICK, fontSize: 12 }} />
                 <YAxis
                   type="category"
                   dataKey="tier"
                   width={180}
-                  tick={{ fill: "#6b5e54", fontSize: 11 }}
+                  tick={{ fill: CHART_TICK, fontSize: 11 }}
                 />
-                <Tooltip
-                  contentStyle={{
-                    borderRadius: "8px",
-                    border: "1px solid #e8e0d8",
-                    fontSize: "13px",
-                  }}
-                />
+                <Tooltip contentStyle={tooltipStyle} />
                 <Bar
                   dataKey="count"
                   name="Interventions"
-                  fill="#4f7a5c"
+                  fill="var(--color-primary-600)"
                   radius={[0, 4, 4, 0]}
                 />
               </BarChart>
@@ -185,25 +174,19 @@ export function ExploreCharts({
                 layout="vertical"
                 margin={{ left: 20 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="#e8e0d8" />
-                <XAxis type="number" tick={{ fill: "#6b5e54", fontSize: 12 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke={CHART_GRID} />
+                <XAxis type="number" tick={{ fill: CHART_TICK, fontSize: 12 }} />
                 <YAxis
                   type="category"
                   dataKey="label"
                   width={200}
-                  tick={{ fill: "#6b5e54", fontSize: 11 }}
+                  tick={{ fill: CHART_TICK, fontSize: 11 }}
                 />
-                <Tooltip
-                  contentStyle={{
-                    borderRadius: "8px",
-                    border: "1px solid #e8e0d8",
-                    fontSize: "13px",
-                  }}
-                />
+                <Tooltip contentStyle={tooltipStyle} />
                 <Bar
                   dataKey="count"
                   name="Interventions"
-                  fill="#7ba68a"
+                  fill="var(--color-primary-400)"
                   radius={[0, 4, 4, 0]}
                 />
               </BarChart>
@@ -229,7 +212,7 @@ export function ExploreCharts({
                   cy="50%"
                   outerRadius={90}
                   label={({ location, count }) => `${location} (${count})`}
-                  labelLine={{ stroke: "#a89888" }}
+                  labelLine={{ stroke: CHART_LABEL_LINE }}
                 >
                   {studyLocationData.map((_, i) => (
                     <Cell
@@ -238,13 +221,7 @@ export function ExploreCharts({
                     />
                   ))}
                 </Pie>
-                <Tooltip
-                  contentStyle={{
-                    borderRadius: "8px",
-                    border: "1px solid #e8e0d8",
-                    fontSize: "13px",
-                  }}
-                />
+                <Tooltip contentStyle={tooltipStyle} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -266,7 +243,7 @@ export function ExploreCharts({
                   cy="50%"
                   outerRadius={90}
                   label={({ duration, count }) => `${duration} (${count})`}
-                  labelLine={{ stroke: "#a89888" }}
+                  labelLine={{ stroke: CHART_LABEL_LINE }}
                 >
                   {durationData.map((_, i) => (
                     <Cell
@@ -275,13 +252,7 @@ export function ExploreCharts({
                     />
                   ))}
                 </Pie>
-                <Tooltip
-                  contentStyle={{
-                    borderRadius: "8px",
-                    border: "1px solid #e8e0d8",
-                    fontSize: "13px",
-                  }}
-                />
+                <Tooltip contentStyle={tooltipStyle} />
               </PieChart>
             </ResponsiveContainer>
           </div>

@@ -19,7 +19,7 @@ export function CompendiumHeader() {
         <div className="flex items-center gap-6">
           <Link
             href="/"
-            className="flex items-center gap-2 font-bold text-lg text-primary-700 font-[family-name:var(--font-heading)]"
+            className="flex items-center gap-2 font-bold text-lg text-primary-700 font-heading"
           >
             Kalamos
             <span className="text-warm-400 font-normal text-sm">

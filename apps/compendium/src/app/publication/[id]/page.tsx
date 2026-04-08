@@ -33,12 +33,7 @@ export async function generateMetadata({
   };
 }
 
-const PILLAR_COLORS: Record<string, string> = {
-  Diagnose: "bg-blue-100 text-blue-800",
-  Treat: "bg-green-100 text-green-800",
-  Prevent: "bg-amber-100 text-amber-800",
-  Respond: "bg-rose-100 text-rose-800",
-};
+import { PILLAR_COLORS } from "@/lib/pillar-colors";
 
 const LINK_LABELS: Record<string, { label: string; prefix: string }> = {
   pubmed: { label: "PubMed", prefix: "" },
@@ -58,7 +53,7 @@ export default async function PublicationDetailPage({
   if (!publication) {
     return (
       <div className="max-w-4xl mx-auto px-6 py-16 text-center">
-        <h1 className="text-2xl font-semibold text-warm-900 font-[family-name:var(--font-heading)]">
+        <h1 className="text-2xl font-semibold text-warm-900 font-heading">
           Publication not found
         </h1>
         <Link
@@ -91,7 +86,7 @@ export default async function PublicationDetailPage({
         <div className="space-y-8">
           {/* Header */}
           <section>
-            <h1 className="text-3xl font-bold text-warm-900 font-[family-name:var(--font-heading)] leading-tight mb-4">
+            <h1 className="text-3xl font-bold text-warm-900 font-heading leading-tight mb-4">
               {publication.title}
             </h1>
 
@@ -112,7 +107,7 @@ export default async function PublicationDetailPage({
 
           {/* Citation */}
           <section>
-            <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-3">
+            <h2 className="text-lg font-semibold text-warm-900 font-heading mb-3">
               Citation
             </h2>
             <Card className="bg-white">
@@ -130,7 +125,7 @@ export default async function PublicationDetailPage({
           {/* Populations */}
           {publication.populations.length > 0 && (
             <section>
-              <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-3">
+              <h2 className="text-lg font-semibold text-warm-900 font-heading mb-3">
                 Populations
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -146,7 +141,7 @@ export default async function PublicationDetailPage({
           {/* Key Outcomes */}
           {publication.keyOutcomes.length > 0 && (
             <section>
-              <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-3">
+              <h2 className="text-lg font-semibold text-warm-900 font-heading mb-3">
                 Key Outcomes
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -160,7 +155,7 @@ export default async function PublicationDetailPage({
           {/* EHE Alignment */}
           {publication.ehePillars.length > 0 && (
             <section>
-              <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-3">
+              <h2 className="text-lg font-semibold text-warm-900 font-heading mb-3">
                 EHE Alignment
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -179,7 +174,7 @@ export default async function PublicationDetailPage({
           {/* Links */}
           {linkEntries.length > 0 && (
             <section>
-              <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-3">
+              <h2 className="text-lg font-semibold text-warm-900 font-heading mb-3">
                 Links
               </h2>
               <div className="flex flex-wrap gap-3">

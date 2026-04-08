@@ -5,9 +5,9 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 const efficacyColors: Record<string, string> = {
-  "Best Evidence": "bg-green-100 text-green-800",
-  "Evidence-Based (EBI)": "bg-blue-100 text-blue-800",
-  EBI: "bg-blue-100 text-blue-800",
+  "Best Evidence": "bg-primary-100 text-primary-800",
+  "Evidence-Based (EBI)": "bg-warm-200 text-warm-800",
+  EBI: "bg-warm-200 text-warm-800",
 };
 
 function getEfficacyStyle(rating: string) {
@@ -46,7 +46,7 @@ export function InterventionCard({ intervention }: InterventionCardProps) {
           </CardTitle>
           <Badge
             className={cn(
-              "shrink-0 text-[11px] whitespace-nowrap",
+              "shrink-0 text-xs whitespace-nowrap",
               getEfficacyStyle(efficacyRating)
             )}
           >
@@ -62,7 +62,7 @@ export function InterventionCard({ intervention }: InterventionCardProps) {
         {ehePillars.length > 0 && (
           <div className="flex flex-wrap gap-1">
             {ehePillars.map((pillar) => (
-              <Badge key={pillar} variant="primary" className="text-[10px]">
+              <Badge key={pillar} variant="primary" className="text-xs">
                 {pillar}
               </Badge>
             ))}
@@ -73,12 +73,12 @@ export function InterventionCard({ intervention }: InterventionCardProps) {
         {populations.length > 0 && (
           <div className="flex flex-wrap gap-1">
             {populations.slice(0, 2).map((pop) => (
-              <Badge key={pop} variant="outline" className="text-[10px]">
+              <Badge key={pop} variant="outline" className="text-xs">
                 {pop}
               </Badge>
             ))}
             {populations.length > 2 && (
-              <span className="text-[10px] text-warm-500 self-center">
+              <span className="text-xs text-warm-500 self-center">
                 +{populations.length - 2} more
               </span>
             )}

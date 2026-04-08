@@ -139,11 +139,11 @@ export function ProviderSearch() {
 
       {/* Error */}
       {error && (
-        <div className="flex items-start gap-3 p-4 rounded-md bg-red-50 border border-red-200">
-          <AlertCircle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" aria-hidden="true" />
+        <div className="flex items-start gap-3 p-4 rounded-md bg-crisis-50 border border-crisis-200">
+          <AlertCircle className="h-5 w-5 text-crisis-500 shrink-0 mt-0.5" aria-hidden="true" />
           <div>
-            <p className="text-sm font-medium text-red-800">Search failed</p>
-            <p className="text-sm text-red-600 mt-0.5">{error}</p>
+            <p className="text-sm font-medium text-crisis-800">Search failed</p>
+            <p className="text-sm text-crisis-600 mt-0.5">{error}</p>
           </div>
         </div>
       )}

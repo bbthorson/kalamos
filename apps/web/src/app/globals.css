@@ -33,7 +33,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
-/* Focus ring utility for accessibility */
+@utility font-heading {
+  font-family: var(--font-heading);
+}
+
 @utility focus-ring {
   outline: 2px solid var(--color-primary-500);
   outline-offset: 2px;

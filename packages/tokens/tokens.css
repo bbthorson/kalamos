@@ -45,9 +45,13 @@
   --color-accent-600: #e85553;
 
   /* Crisis/urgent: Coral-red */
+  --color-crisis-50: #fff5f5;
+  --color-crisis-100: #ffe3e3;
+  --color-crisis-200: #ffbdbc;
   --color-crisis-500: #ff6e6c;
   --color-crisis-600: #e85553;
   --color-crisis-700: #c43e3c;
+  --color-crisis-800: #9c2f2e;
 
   /* Tertiary: Warm gold */
   --color-tertiary-400: #fce68a;

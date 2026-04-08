@@ -34,12 +34,7 @@ export async function generateMetadata({
   };
 }
 
-const PILLAR_COLORS: Record<string, string> = {
-  Diagnose: "bg-blue-100 text-blue-800",
-  Treat: "bg-green-100 text-green-800",
-  Prevent: "bg-amber-100 text-amber-800",
-  Respond: "bg-rose-100 text-rose-800",
-};
+import { PILLAR_COLORS } from "@/lib/pillar-colors";
 
 function getRelatedInterventions(
   currentId: string,
@@ -74,7 +69,7 @@ export default async function InterventionDetailPage({
   if (!intervention) {
     return (
       <div className="max-w-4xl mx-auto px-6 py-16 text-center">
-        <h1 className="text-2xl font-semibold text-warm-900 font-[family-name:var(--font-heading)]">
+        <h1 className="text-2xl font-semibold text-warm-900 font-heading">
           Intervention not found
         </h1>
         <Link
@@ -112,7 +107,7 @@ export default async function InterventionDetailPage({
             {/* Header */}
             <section>
               <div className="flex flex-wrap items-start gap-3 mb-4">
-                <h1 className="text-3xl font-bold text-warm-900 font-[family-name:var(--font-heading)] leading-tight">
+                <h1 className="text-3xl font-bold text-warm-900 font-heading leading-tight">
                   {intervention.name}
                 </h1>
                 <Badge
@@ -182,7 +177,7 @@ export default async function InterventionDetailPage({
             {/* Populations Served */}
             {intervention.populations.length > 0 && (
               <section>
-                <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-3">
+                <h2 className="text-lg font-semibold text-warm-900 font-heading mb-3">
                   Populations Served
                 </h2>
                 <div className="flex flex-wrap gap-2">
@@ -198,7 +193,7 @@ export default async function InterventionDetailPage({
             {/* Key Effects */}
             {intervention.keyEffects.length > 0 && (
               <section>
-                <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-3">
+                <h2 className="text-lg font-semibold text-warm-900 font-heading mb-3">
                   Key Effects
                 </h2>
                 <ul className="space-y-2">
@@ -218,7 +213,7 @@ export default async function InterventionDetailPage({
             {/* EHE Alignment */}
             {intervention.ehePillars.length > 0 && (
               <section>
-                <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-3">
+                <h2 className="text-lg font-semibold text-warm-900 font-heading mb-3">
                   EHE Alignment
                 </h2>
                 <div className="flex flex-wrap gap-2">
@@ -237,7 +232,7 @@ export default async function InterventionDetailPage({
             {/* Strategies */}
             {intervention.strategies.length > 0 && (
               <section>
-                <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-3">
+                <h2 className="text-lg font-semibold text-warm-900 font-heading mb-3">
                   Strategies
                 </h2>
                 <div className="flex flex-wrap gap-2">
@@ -251,7 +246,7 @@ export default async function InterventionDetailPage({
             {/* Publications */}
             {intervention.publications.length > 0 && (
               <section>
-                <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-4">
+                <h2 className="text-lg font-semibold text-warm-900 font-heading mb-4">
                   Publications
                 </h2>
                 <div className="space-y-4">
@@ -296,7 +291,7 @@ export default async function InterventionDetailPage({
           {/* Sidebar: Related Interventions */}
           {related.length > 0 && (
             <aside className="space-y-4">
-              <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)]">
+              <h2 className="text-lg font-semibold text-warm-900 font-heading">
                 Related Interventions
               </h2>
               {related.map((rel) => (

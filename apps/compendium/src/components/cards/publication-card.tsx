@@ -37,7 +37,7 @@ export function PublicationCard({ publication }: PublicationCardProps) {
           </CardTitle>
         </div>
         <div className="flex items-center gap-2 mt-1">
-          <Badge variant="default" className="text-[11px] shrink-0">
+          <Badge variant="default" className="text-xs shrink-0">
             {publicationType}
           </Badge>
           {publicationYear && (
@@ -51,7 +51,7 @@ export function PublicationCard({ publication }: PublicationCardProps) {
         {ehePillars.length > 0 && (
           <div className="flex flex-wrap gap-1">
             {ehePillars.map((pillar) => (
-              <Badge key={pillar} variant="primary" className="text-[10px]">
+              <Badge key={pillar} variant="primary" className="text-xs">
                 {pillar}
               </Badge>
             ))}

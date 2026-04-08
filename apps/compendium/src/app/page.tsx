@@ -19,7 +19,7 @@ export default async function CatalogPage() {
       {/* Hero */}
       <section className="border-b border-warm-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-semibold tracking-tight text-warm-900 sm:text-4xl font-[family-name:var(--font-heading)]">
+          <h1 className="text-3xl font-semibold tracking-tight text-warm-900 sm:text-4xl font-heading">
             CDC HIV Compendium
           </h1>
           <p className="mt-3 max-w-2xl text-warm-600">
