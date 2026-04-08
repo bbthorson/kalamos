@@ -68,7 +68,7 @@ function InterventionDetail({
             <ArrowLeft className="h-4 w-4" />
             Back to Compendium
           </Link>
-          <h1 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-heading)] tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-bold font-heading tracking-tight">
             {intervention.name}
           </h1>
           {intervention.efficacyRating && (
@@ -83,7 +83,7 @@ function InterventionDetail({
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-8">
           {intervention.description && (
             <div>
-              <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-2">
+              <h2 className="text-lg font-semibold text-warm-900 font-heading mb-2">
                 Description
               </h2>
               <p className="text-warm-700 leading-relaxed">
@@ -162,7 +162,7 @@ function InterventionDetail({
 
           {intervention.publications.length > 0 && (
             <div>
-              <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-3">
+              <h2 className="text-lg font-semibold text-warm-900 font-heading mb-3">
                 Publications
               </h2>
               <ul className="space-y-2">
@@ -221,7 +221,7 @@ function PublicationDetail({
             <ArrowLeft className="h-4 w-4" />
             Back to Compendium
           </Link>
-          <h1 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-heading)] tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-bold font-heading tracking-tight">
             {publication.title}
           </h1>
           <p className="mt-2 text-shadow-200">
@@ -292,7 +292,7 @@ function PublicationDetail({
 
           {publication.citation && (
             <div>
-              <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-2">
+              <h2 className="text-lg font-semibold text-warm-900 font-heading mb-2">
                 Citation
               </h2>
               <p className="text-sm text-warm-700 leading-relaxed">
@@ -303,7 +303,7 @@ function PublicationDetail({
 
           {Object.keys(publication.links).length > 0 && (
             <div>
-              <h2 className="text-lg font-semibold text-warm-900 font-[family-name:var(--font-heading)] mb-3">
+              <h2 className="text-lg font-semibold text-warm-900 font-heading mb-3">
                 Links
               </h2>
               <ul className="space-y-2">

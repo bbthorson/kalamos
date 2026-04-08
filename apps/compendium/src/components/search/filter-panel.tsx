@@ -133,7 +133,7 @@ export function FilterPanel({
   return (
     <div className={cn("bg-white rounded-lg border border-warm-200", className)}>
       <div className="flex items-center justify-between px-4 pt-4 pb-2">
-        <h3 className="text-sm font-semibold text-warm-900 font-[family-name:var(--font-heading)]">
+        <h3 className="text-sm font-semibold text-warm-900 font-heading">
           Filters
         </h3>
         {totalSelected > 0 && (

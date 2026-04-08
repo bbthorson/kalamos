@@ -28,7 +28,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-br from-shadow-900 via-shadow-800 to-primary-950 opacity-95" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
           <div className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight font-[family-name:var(--font-heading)]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight font-heading">
               Prescribe{" "}
               <span className="text-primary-300">Pride.</span>
             </h1>

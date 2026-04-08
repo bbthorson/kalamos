@@ -22,7 +22,7 @@ export default function CompendiumPage() {
       {/* Hero */}
       <section className="bg-shadow-900 text-white py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-heading)] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-bold font-heading tracking-tight">
             CDC HIV Compendium Explorer
           </h1>
           <p className="mt-4 text-lg text-shadow-200 max-w-3xl">

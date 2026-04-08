@@ -347,7 +347,7 @@ export function CompendiumSearch({
           />
           <div className="absolute inset-y-0 left-0 w-80 max-w-full bg-warm-50 shadow-xl overflow-y-auto">
             <div className="flex items-center justify-between p-4 border-b border-warm-200">
-              <h3 className="text-sm font-semibold text-warm-900 font-[family-name:var(--font-heading)]">
+              <h3 className="text-sm font-semibold text-warm-900 font-heading">
                 Filters
               </h3>
               <button
